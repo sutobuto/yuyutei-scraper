@@ -1,25 +1,36 @@
 import express from 'express';
 import cors from 'cors';
+import { getCardNameJP } from './services/yugipedia.services.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/price", async (req, res) => {
-    const cards = await fuzzySearchCard(req.query.cardnameEN);
+// endpoint: card fuzzy search
+app.get("/search", async (req, res) => {
+    const cards = await fuzzySearchCard(req.query.card);
     
     const cardnames = [];
     cards.data.forEach(card => {
         cardnames.push(card.name);
     })
 
-    await console.log(cardnames);
+    console.log(cardnames);
     res.send(cardnames);
 })
 
-app.get("/cardname", (req, res) => {
-    const search = req.query.search;
+// endpoint: get japanese card name
+app.get("/getJP", async (req, res) => {
+    const card = req.query.card;
+
+    const cardnameJP = await getCardNameJP(card);
+    console.log(cardnameJP);
+    res.send(cardnameJP);
+})
+
+// endpoint: get card pricing via yuyutei
+app.get("/getPrice", async (req, res) => {
 
 })
 
