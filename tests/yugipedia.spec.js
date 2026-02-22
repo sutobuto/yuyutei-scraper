@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 
 test('Yugipedia JP Card Name Getter', async ({page}) => {
 
-    const cardname = "Diabellstar the Black Witch".replaceAll(' ', '_');
+    const cardname = "Diabellze the White Witch".replaceAll(' ', '_');
     const cardURL = `https://yugipedia.com/wiki/${cardname}`;
     console.log(cardURL);
 

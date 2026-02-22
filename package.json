@@ -5,13 +5,14 @@
   "license": "ISC",
   "author": "Lian Estabillo",
   "type": "module",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {},
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0"
   },
   "dependencies": {
-    "change-case": "^5.4.4"
+    "change-case": "^5.4.4",
+    "express": "^5.2.1"
   }
 }
