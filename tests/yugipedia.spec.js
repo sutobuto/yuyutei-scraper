@@ -1,12 +1,17 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 
 test('Yugipedia JP Card Name Getter', async ({page}) => {
-    await page.goto('https://yugipedia.com/wiki/Elfnote_Regina');
 
-    const cardnameEN = await page.locator('h1[class="firstHeading"]').innerText();
+    const cardname = "Diabellstar the Black Witch".replaceAll(' ', '_');
+    const cardURL = `https://yugipedia.com/wiki/${cardname}`;
+    console.log(cardURL);
 
-    const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
+    await page.goto(cardURL);
+
+    const cardnameEN = await page.getByRole('heading', {level: 1}).innerText();
+    
     var cardnameJP;
+    const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
     if(checkLang) {
         cardnameJP = await page.locator('span[lang="ja-Jpan"]').innerText();
     } else {
