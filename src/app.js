@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { getCardNameJP } from './services/yugipedia.services.js';
+import { getPrice } from './services/yuyutei.services.js';
 
 const app = express();
 
@@ -31,7 +32,10 @@ app.get("/getJP", async (req, res) => {
 
 // endpoint: get card pricing via yuyutei
 app.get("/getPrice", async (req, res) => {
+    const card = req.query.card;
 
+    const price = await getPrice(card);
+    res.send(price);
 })
 
 const fuzzySearchCard = async (name) => {

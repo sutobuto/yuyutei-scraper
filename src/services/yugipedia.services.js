@@ -1,4 +1,5 @@
 import { get } from 'node:http';
+import { expect } from '@playwright/test';
 import { getBrowser } from '../config/browser.js';
 
 export const getCardNameJP = async (cardnameEN) => {
@@ -11,7 +12,9 @@ export const getCardNameJP = async (cardnameEN) => {
 
     // construct the url
     const cardnameENmod = cardnameEN.replaceAll(' ', '_');
-    await page.goto(`https://yugipedia.com/wiki/${cardnameENmod}`);
+    const url = `https://yugipedia.com/wiki/${cardnameENmod}`
+    
+    await page.goto(url);
 
     var cardnameJP;
     const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
