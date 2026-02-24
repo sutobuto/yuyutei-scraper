@@ -17,30 +17,32 @@ export const getCardNameJP = async (cardnameEN) => {
     await page.goto(url);
 
     var cardnameJP;
-    const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
+    const checkLang = await page.locator('span[lang="ja-Hrkt"]').isVisible();
 
-    // check if card contains ruby text
     if(checkLang) {
-        // get base kana without ruby text
-        await expect(page.locator('span[lang="ja-Jpan"]')).toBeVisible();
-        cardnameJP = await page.locator('span[lang="ja-Jpan"]').innerText();
+        // get kana span
+        await expect(page.locator('span[lang="ja-Hrkt"]')).toBeVisible();
+        cardnameJP = await page.locator('span[lang="ja-Hrkt"]').innerText();
     } else {
-        // get original kana
+        // get original span
         await expect(page.getByRole('definition').locator('span[lang="ja"]')).toBeVisible();
         cardnameJP = await page.getByRole('definition').locator('span[lang="ja"]').innerText();
     }
 
+    // const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
+
+    // // check if card contains ruby text
+    // if(checkLang) {
+    //     // get base kana without ruby text
+    //     await expect(page.locator('span[lang="ja-Jpan"]')).toBeVisible();
+    //     cardnameJP = await page.locator('span[lang="ja-Jpan"]').innerText();
+    // } else {
+    //     // get original kana
+    //     await expect(page.getByRole('definition').locator('span[lang="ja"]')).toBeVisible();
+    //     cardnameJP = await page.getByRole('definition').locator('span[lang="ja"]').innerText();
+    // }
+2
     await context.close();
 
-    return convertFullToHalfWidth(cardnameJP);
-}
-
-function convertFullToHalfWidth(str) {
-  // Convert full-width alphanumeric and symbols to half-width
-  const halfwidthStr = str.replace(/[！-～]/g, function(fullwidthChar) {
-    return String.fromCharCode(fullwidthChar.charCodeAt(0) - 0xfee0);
-  });
-  
-  // Convert full-width space (U+3000) to half-width space (U+0020)
-  return halfwidthStr.replace(/　/g, ' ').replace('<', '〈').replace('>', '〉');
+    return cardnameJP;
 }
