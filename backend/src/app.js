@@ -17,7 +17,6 @@ app.get("/search", async (req, res) => {
         cardnames.push(card.name);
     })
 
-    console.log(cardnames);
     res.send(cardnames);
 })
 
@@ -26,7 +25,6 @@ app.get("/getJP", async (req, res) => {
     const card = req.query.card;
 
     const cardnameJP = await getCardNameJP(card);
-    console.log(cardnameJP);
     res.json(cardnameJP);
 })
 
