@@ -1,4 +1,3 @@
-import { get } from 'node:http';
 import { expect } from '@playwright/test';
 import { getBrowser } from '../config/browser.js';
 
@@ -19,6 +18,7 @@ export const getCardNameJP = async (cardnameEN) => {
     var cardnameJP;
     const checkLang = await page.locator('span[lang="ja-Hrkt"]').isVisible();
 
+    // check if card contains separate kana translation
     if(checkLang) {
         // get kana span
         await expect(page.locator('span[lang="ja-Hrkt"]')).toBeVisible();

@@ -1,8 +1,8 @@
-import { test } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 test('Yugipedia JP Card Name Getter', async ({page}) => {
 
-    const cardname = "Diabellze the White Witch".replaceAll(' ', '_');
+    const cardname = "Diabellstar the Black Witch".replaceAll(' ', '_');
     const cardURL = `https://yugipedia.com/wiki/${cardname}`;
     console.log(cardURL);
 
@@ -12,9 +12,12 @@ test('Yugipedia JP Card Name Getter', async ({page}) => {
     
     var cardnameJP;
     const checkLang = await page.locator('span[lang="ja-Jpan"]').isVisible();
+    await page.screenshot({path: "test.png", fullPage: true});
     if(checkLang) {
+        await expect(page.locator('span[lang="ja-Jpan"]')).toBeVisible();
         cardnameJP = await page.locator('span[lang="ja-Jpan"]').innerText();
     } else {
+        await expect(page.getByRole('definition').locator('span[lang="ja"]')).toBeVisible();
         cardnameJP = await page.getByRole('definition').locator('span[lang="ja"]').innerText();
     }
 
