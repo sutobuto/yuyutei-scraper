@@ -32,5 +32,15 @@ export const getCardNameJP = async (cardnameEN) => {
 
     await context.close();
 
-    return cardnameJP;
+    return convertFullToHalfWidth(cardnameJP);
+}
+
+function convertFullToHalfWidth(str) {
+  // Convert full-width alphanumeric and symbols to half-width
+  const halfwidthStr = str.replace(/[！-～]/g, function(fullwidthChar) {
+    return String.fromCharCode(fullwidthChar.charCodeAt(0) - 0xfee0);
+  });
+  
+  // Convert full-width space (U+3000) to half-width space (U+0020)
+  return halfwidthStr.replace(/　/g, ' ').replace('<', '〈').replace('>', '〉');
 }

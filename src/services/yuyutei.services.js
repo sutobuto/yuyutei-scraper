@@ -27,6 +27,7 @@ export const getPrice = async (name) => {
             if($cardname.includes('(イラスト違い版)')) isAltArt = true;
 
             data.push({ 
+                name: $cardname,
                 rarity: $(rarity).find('span.py-2').text(), 
                 setID: $(card).find('span').text(), 
                 yenPrice: parseInt(yenPrice, 10),

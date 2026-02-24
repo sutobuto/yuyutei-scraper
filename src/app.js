@@ -13,7 +13,7 @@ app.get("/search", async (req, res) => {
     const cards = await fuzzySearchCard(req.query.card);
     
     const cardnames = [];
-    cards.data.forEach(card => {
+    await cards.data.forEach(card => {
         cardnames.push(card.name);
     })
 
@@ -27,7 +27,7 @@ app.get("/getJP", async (req, res) => {
 
     const cardnameJP = await getCardNameJP(card);
     console.log(cardnameJP);
-    res.send(cardnameJP);
+    res.json(cardnameJP);
 })
 
 // endpoint: get card pricing via yuyutei
@@ -38,10 +38,38 @@ app.get("/getPrice", async (req, res) => {
     res.send(price);
 })
 
+app.get("/getInfo", async (req, res) => {
+    const card = req.query.card;
+
+    const info = await getCardInfo(card);
+    res.send(info);
+})
+
 const fuzzySearchCard = async (name) => {
-    const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}`);
-    const result = await response.json();
-    return result;
+    try {
+        const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}`);
+        if(!response.ok) {
+            throw new Error(`HTTP Error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        return result;
+    } catch(error) {
+        console.error('Fetch failed:', error.message);
+        console.error('Underlying cause:', error.cause);
+    } 
+}
+
+const getCardInfo = async (name) => {
+    try {
+        const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${name}`);
+        if(!response.ok) {
+
+        }
+        const result = await response.json();
+        return result
+    } catch(error) {
+        
+    }
 }
 
 export default app;
