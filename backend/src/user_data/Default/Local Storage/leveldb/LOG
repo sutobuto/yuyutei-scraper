@@ -1,0 +1,42 @@
+2026/04/23-02:43:37.328 4f424 Reusing MANIFEST /home/lianestab/Projects/yuyutei-scraper/backend/src/user_data/Default/Local Storage/leveldb/MANIFEST-000001
+2026/04/23-02:43:37.332 4f424 Recovering log #9
+2026/04/23-02:43:37.333 4f424 Reusing old log /home/lianestab/Projects/yuyutei-scraper/backend/src/user_data/Default/Local Storage/leveldb/000009.log 
+2026/04/23-02:43:46.017 4f424 Level-0 table #13: started
+2026/04/23-02:43:46.019 4f424 Level-0 table #13: 16638 bytes OK
+2026/04/23-02:43:46.022 4f424 Delete type=0 #9
+2026/04/23-02:44:04.322 4f424 Level-0 table #15: started
+2026/04/23-02:44:04.324 4f424 Level-0 table #15: 16432 bytes OK
+2026/04/23-02:44:04.330 4f424 Delete type=0 #12
+2026/04/23-02:44:22.233 4f424 Level-0 table #17: started
+2026/04/23-02:44:22.237 4f424 Level-0 table #17: 16702 bytes OK
+2026/04/23-02:44:22.239 4f424 Delete type=0 #14
+2026/04/23-02:44:22.240 4f424 Compacting 4@0 + 1@1 files
+2026/04/23-02:44:22.242 4f424 Generated table #18@0: 36 keys, 6680 bytes
+2026/04/23-02:44:22.242 4f424 Compacted 4@0 + 1@1 files => 6680 bytes
+2026/04/23-02:44:22.243 4f424 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/04/23-02:44:22.244 4f424 Delete type=2 #8
+2026/04/23-02:44:22.244 4f424 Delete type=2 #10
+2026/04/23-02:44:22.244 4f424 Delete type=2 #13
+2026/04/23-02:44:22.245 4f424 Delete type=2 #15
+2026/04/23-02:44:22.245 4f424 Delete type=2 #17
+2026/04/23-02:45:44.103 4f424 Level-0 table #20: started
+2026/04/23-02:45:44.104 4f424 Level-0 table #20: 16494 bytes OK
+2026/04/23-02:45:44.106 4f424 Delete type=0 #16
+2026/04/23-02:46:14.852 4f426 Level-0 table #22: started
+2026/04/23-02:46:14.853 4f426 Level-0 table #22: 16376 bytes OK
+2026/04/23-02:46:14.855 4f426 Delete type=0 #19
+2026/04/23-02:46:52.757 4f424 Level-0 table #24: started
+2026/04/23-02:46:52.760 4f424 Level-0 table #24: 16439 bytes OK
+2026/04/23-02:46:52.763 4f424 Delete type=0 #21
+2026/04/23-02:47:39.988 4f426 Level-0 table #26: started
+2026/04/23-02:47:39.990 4f426 Level-0 table #26: 16445 bytes OK
+2026/04/23-02:47:39.992 4f426 Delete type=0 #23
+2026/04/23-02:47:39.993 4f426 Compacting 4@0 + 1@1 files
+2026/04/23-02:47:39.995 4f426 Generated table #27@0: 36 keys, 7412 bytes
+2026/04/23-02:47:39.995 4f426 Compacted 4@0 + 1@1 files => 7412 bytes
+2026/04/23-02:47:39.997 4f426 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/04/23-02:47:39.997 4f426 Delete type=2 #18
+2026/04/23-02:47:39.997 4f426 Delete type=2 #20
+2026/04/23-02:47:39.998 4f426 Delete type=2 #22
+2026/04/23-02:47:39.998 4f426 Delete type=2 #24
+2026/04/23-02:47:39.998 4f426 Delete type=2 #26
