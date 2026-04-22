@@ -1,4 +1,3 @@
-import { start } from 'node:repl';
 import app from './app.js';
 import { initBrowser } from './config/browser.js';
 

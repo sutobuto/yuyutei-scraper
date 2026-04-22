@@ -46,3 +46,21 @@ export const getCardNameJP = async (cardnameEN) => {
 
     return cardnameJP;
 }
+
+export const getCardNameEN = async (setID) => {
+    // initialize browser
+    const userAgent = 
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+    const browser = getBrowser();
+    const context = await browser.newContext({ userAgent, bypassCSP: true });
+    const page = await context.newPage();
+
+    const url = `https://yugipedia.com/wiki/${setID}`
+    await page.goto(url);
+
+    const cardnameEN = await page.locator('.firstHeading').innerText();
+
+    await page.close();
+
+    return cardnameEN;
+}

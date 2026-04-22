@@ -1,4 +1,7 @@
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
+import { getCardNameEN } from "./yugipedia.services.js";
+
+const namesEN = {};
 
 export const getPrice = async (name) => {
     // initialize browser
@@ -6,36 +9,57 @@ export const getPrice = async (name) => {
     console.log(url);
     const $ = await cheerio.fromURL(url, {
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
-        }
+            "User-Agent":
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+        },
     });
-    
-    const $rarityCardGroups = $('div#card-list3')
+
+    const $rarityCardGroups = $("div#card-list3").toArray();
     const data = [];
 
     // TODO: seperate alternate art pricing
-    $rarityCardGroups.each((i, rarity) => {
-        const $cardGroup = $(rarity).find('div.card-product');
-        $cardGroup.each((i, card) => {
-            console.log($(card).find('span').text());
+    for (const rarity of $rarityCardGroups) {
+        const $rarity = $(rarity);
+        const rarityname = $rarity.find("span.py-2").text();
 
-            var isAltArt = false;
-            const yenPrice = $(card).find('strong').text().replaceAll(',', '').replaceAll(/\n/g, '').replace('円', '').replaceAll(' ', '');
+        const $cardGroup = $rarity.find("div.card-product").toArray();
+
+        for (const card of $cardGroup) {
+            //console.log($(card).find("span").text());
+            const $card = $(card);
+            const $cardname = $card.find("h4").text();
+
+            const yenPriceStr = $card
+                .find("strong")
+                .text()
+                .replace(/[,\n 円]/g, "");
+            const yenPrice = parseInt(yenPriceStr, 10) || 0;
             const phpPrice = yenPrice * 0.37;
+            const setID = $(card).find("span").text().trim();
 
-            const $cardname = $(card).find('h4').text();
-            if($cardname.includes('(イラスト違い版)')) isAltArt = true;
+            let cardnameEN;
+            const cardnameTrimmed = $cardname.replace(/\(ロゴ無し\)|\(イラスト違い版\)|\(ロゴ有り\)/g, "");
+            if (namesEN.hasOwnProperty(cardnameTrimmed)) {
+                cardnameEN = namesEN[cardnameTrimmed];
+            } else {
+                cardnameEN = await getCardNameEN(setID);
+                namesEN[cardnameTrimmed] = cardnameEN;
+            }
 
-            data.push({ 
-                name: $cardname,
-                rarity: $(rarity).find('span.py-2').text(), 
-                setID: $(card).find('span').text(), 
-                yenPrice: parseInt(yenPrice, 10),
+            await data.push({
+                nameJP: $cardname,
+                nameEN: cardnameEN,
+                rarity: rarityname,
+                setID: setID,
+                yenPrice: yenPrice,
                 phpPrice: phpPrice,
-                isAltArt: isAltArt
+                isAltArt:
+                    $cardname.includes("(イラスト違い版)") ||
+                    $cardname.includes("(ロゴ有り)") ||
+                    $cardname.includes("(ロゴ無し)"),
             });
-        })
-    })
-
+        }
+    }
+    console.log(namesEN);
     return data;
-}
+};
