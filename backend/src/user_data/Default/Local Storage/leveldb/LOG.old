@@ -1,9 +1,0 @@
-2026/04/23-02:41:06.161 4eef5 Reusing MANIFEST /home/lianestab/Projects/yuyutei-scraper/backend/src/user_data/Default/Local Storage/leveldb/MANIFEST-000001
-2026/04/23-02:41:06.165 4eef5 Recovering log #4
-2026/04/23-02:41:06.166 4eef5 Reusing old log /home/lianestab/Projects/yuyutei-scraper/backend/src/user_data/Default/Local Storage/leveldb/000004.log 
-2026/04/23-02:41:58.481 4eef5 Level-0 table #8: started
-2026/04/23-02:41:58.482 4eef5 Level-0 table #8: 17756 bytes OK
-2026/04/23-02:41:58.484 4eef5 Delete type=0 #4
-2026/04/23-02:42:39.127 4eef5 Level-0 table #10: started
-2026/04/23-02:42:39.128 4eef5 Level-0 table #10: 16337 bytes OK
-2026/04/23-02:42:39.129 4eef5 Delete type=0 #7
