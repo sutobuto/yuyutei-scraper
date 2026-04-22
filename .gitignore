@@ -6,6 +6,7 @@ backend/node_modules/
 /backend/blob-report/
 /backend/playwright/.cache/
 /backend/playwright/.auth/
+/backend/src/user_data/
 
 # Frontend
 # Logs
